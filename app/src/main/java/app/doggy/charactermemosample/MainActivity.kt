@@ -11,7 +11,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    open val data: List<CharacterData> = listOf(
+    //サンプルデータを設定。
+    val data: List<CharacterData> = listOf(
         CharacterData(R.drawable.ic_launcher_background, "item1"),
         CharacterData(R.drawable.ic_launcher_background, "item2"),
         CharacterData(R.drawable.ic_launcher_background, "item3"),
@@ -31,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         val adapter = RecyclerViewAdapter(this)
 
         //RecyclerViewのレイアウトを決める。
-
         recyclerView.layoutManager = LinearLayoutManager(this) //縦横表示
         //recyclerView.layoutManager = GridLayoutManager(baseContext,2) //グリッド表示
 

@@ -11,6 +11,7 @@ class MemoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_memo)
 
+        //MainActivityから値を受け取る。
         val name = intent.getStringExtra("NAME")
         editNameText.setText(name)
 

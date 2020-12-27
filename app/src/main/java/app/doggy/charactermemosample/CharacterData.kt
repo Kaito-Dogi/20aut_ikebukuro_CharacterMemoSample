@@ -1,8 +1,12 @@
 package app.doggy.charactermemosample
 
+//データクラスは一つにまとめる。
 data class CharacterData(
+    //MainActivityで表示するデータ。
     val characterImageResource: Int,
     var name: String = "",
+
+    //MainActivityでは表示しないデータ。
     var gender: String = "",
     var nickname: String = "",
     var position: String = "",

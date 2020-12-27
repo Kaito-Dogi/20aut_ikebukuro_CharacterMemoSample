@@ -19,7 +19,9 @@ class RecyclerViewAdapter(private val context: Context): RecyclerView.Adapter<Re
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_character_data_cell, parent, false)
 
+        //リスナを設定。
         view.setOnClickListener(ItemClickListener())
+
         return ViewHolder(view)
     }
 
