@@ -1,10 +1,15 @@
 package app.doggy.charactermemosample
 
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
+import java.util.*
+
 //データクラスは一つにまとめる。
-data class CharacterData(
+open class CharacterData(
+    @PrimaryKey open var id: String = UUID.randomUUID().toString(),
     //MainActivityで表示するデータ。
-    val characterImageResource: Int,
-    var name: String = "",
+    open var characterImageResource: Int = 0,
+    open var name: String = "",
 
     //MainActivityでは表示しないデータ。
     var gender: String = "",
@@ -28,4 +33,4 @@ data class CharacterData(
     var remark: String = "",
     var write: String = "",
     var other: String = ""
-)
+) : RealmObject()

@@ -10,10 +10,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import io.realm.OrderedRealmCollection
+import io.realm.Realm
 
-class RecyclerViewAdapter(private val context: Context): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class RecyclerViewAdapter(private val context: Context,
+                          private var characterDataList: OrderedRealmCollection<CharacterData>?,
+                          private val autoUpdate: Boolean): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
     //RecyclerViewに表示するリストの宣言。
-    val items: MutableList<CharacterData> = mutableListOf()
+    //val items: MutableList<CharacterData> = mutableListOf()
 
     //ViewHolderをインスタンス化する。
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,22 +30,20 @@ class RecyclerViewAdapter(private val context: Context): RecyclerView.Adapter<Re
     }
 
     //リストの要素数を返す。
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = characterDataList?.size ?: 0
 
     //itemsのposition番目の要素をViewに表示する。
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = items[position]
-        holder.characterImageView.setImageResource(item.characterImageResource)
-        holder.characterNameTextView.text = item.name
+        val characterData: CharacterData = characterDataList?.get(position) ?: return
+        holder.characterImageView.setImageResource(characterData.characterImageResource)
+        holder.characterNameTextView.text = characterData.name
     }
 
     //RecyclerViewにデータを表示する。
-    fun addAll(items: List<CharacterData>) {
-        this.items.addAll(items)
-        notifyDataSetChanged()
-    }
+//    fun addAll(items: List<CharacterData>) {
+//        this.items.addAll(items)
+//        notifyDataSetChanged()
+//    }
 
     //まずViewHolderクラスを作成する。
     //ViewHolderクラスは、Viewを保持するクラスであり、Adapterを使うときに必要となる。
@@ -73,5 +75,4 @@ class RecyclerViewAdapter(private val context: Context): RecyclerView.Adapter<Re
             context.startActivity(intent)
         }
     }
-
 }
