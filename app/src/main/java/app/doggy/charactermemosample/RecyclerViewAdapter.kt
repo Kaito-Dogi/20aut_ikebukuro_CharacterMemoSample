@@ -16,8 +16,6 @@ import io.realm.Realm
 class RecyclerViewAdapter(private val context: Context,
                           private var characterDataList: OrderedRealmCollection<CharacterData>?,
                           private val autoUpdate: Boolean): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
-    //RecyclerViewに表示するリストの宣言。
-    //val items: MutableList<CharacterData> = mutableListOf()
 
     //ViewHolderをインスタンス化する。
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,12 +36,6 @@ class RecyclerViewAdapter(private val context: Context,
         holder.characterImageView.setImageResource(characterData.characterImageResource)
         holder.characterNameTextView.text = characterData.name
     }
-
-    //RecyclerViewにデータを表示する。
-//    fun addAll(items: List<CharacterData>) {
-//        this.items.addAll(items)
-//        notifyDataSetChanged()
-//    }
 
     //まずViewHolderクラスを作成する。
     //ViewHolderクラスは、Viewを保持するクラスであり、Adapterを使うときに必要となる。

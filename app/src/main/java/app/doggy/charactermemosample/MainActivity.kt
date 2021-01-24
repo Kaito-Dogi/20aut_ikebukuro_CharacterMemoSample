@@ -19,28 +19,16 @@ class MainActivity : AppCompatActivity() {
         Realm.getDefaultInstance()
     }
 
-    //サンプルデータを設定。
-//    val data: List<CharacterData> = listOf(
-//        CharacterData(R.drawable.ic_launcher_background, "item1"),
-//        CharacterData(R.drawable.ic_launcher_background, "item2"),
-//        CharacterData(R.drawable.ic_launcher_background, "item3"),
-//        CharacterData(R.drawable.ic_launcher_background, "item4"),
-//        CharacterData(R.drawable.ic_launcher_background, "item5"),
-//        CharacterData(R.drawable.ic_launcher_background, "item6"),
-//        CharacterData(R.drawable.ic_launcher_background, "item7"),
-//        CharacterData(R.drawable.ic_launcher_background, "item8"),
-//        CharacterData(R.drawable.ic_launcher_background, "item9")
-//    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //データを読み込む。
         val characterDataList = readAll()
 
-        // タスクリストが空だったときにダミーデータを生成する
+        //データが空の時、データを生成する。
         if (characterDataList.isEmpty()) {
-            createDummyData()
+            createData()
         }
 
         //adapterをインスタンス化する。
@@ -52,9 +40,6 @@ class MainActivity : AppCompatActivity() {
 
         //RecyclerViewにadapterを渡す。
         recyclerView.adapter = adapter
-
-        //RecyclerViewにデータを表示する。
-        //adapter.addAll(data)
     }
 
     override fun onDestroy() {
@@ -62,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         realm.close()
     }
 
-    fun createDummyData() {
+    fun createData() {
         for (i in 0..10) {
             create(R.drawable.ic_launcher_background, "Character $i")
         }
