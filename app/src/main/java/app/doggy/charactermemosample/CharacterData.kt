@@ -7,6 +7,7 @@ import java.util.*
 //データクラスは一つにまとめる。
 open class CharacterData(
     @PrimaryKey open var id: String = UUID.randomUUID().toString(),
+    open var intId: Int = 0,
     //MainActivityで表示するデータ。
     open var characterImageResource: Int = 0,
     open var name: String = "",

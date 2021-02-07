@@ -15,6 +15,14 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    val imageIds: Array<Int> = arrayOf(
+        R.drawable.zero,
+        R.drawable.one,
+        R.drawable.two,
+        R.drawable.three,
+        R.drawable.four
+    )
+
     private val realm: Realm by lazy {
         Realm.getDefaultInstance()
     }
@@ -48,16 +56,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun createData() {
-        for (i in 0..10) {
-            create(R.drawable.ic_launcher_background, "Character $i")
+        for (i in 0..4) {
+            create(i, imageIds[i], "Character $i")
         }
     }
 
-    fun create(imageId: Int, name: String) {
+    fun create(intId: Int, imageId: Int, name: String) {
         realm.executeTransaction {
             val characterData = it.createObject(CharacterData::class.java, UUID.randomUUID().toString())
             characterData.characterImageResource = imageId
             characterData.name = name
+
+            characterData.intId = intId
         }
     }
 

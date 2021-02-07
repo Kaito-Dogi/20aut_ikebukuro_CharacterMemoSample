@@ -20,11 +20,18 @@ class MemoActivity : AppCompatActivity() {
         val name = intent.getStringExtra("NAME")
         editNameText.setText(name)
 
+        //登録されている情報を表示。
         display(name.toString())
 
+        //Intentをインスタンス化。
+        val intent = Intent(applicationContext, DisplayActivity::class.java)
+
+        //Intentにidを渡す。
+        prepareForIntent(name as String, intent)
+
+        //保存ボタンを押した時の処理。
         saveButton.setOnClickListener {
             update(name.toString())
-            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
@@ -53,6 +60,15 @@ class MemoActivity : AppCompatActivity() {
             character.name = editNameText.text.toString()
             character.nickname = editNicknameText.text.toString()
             character.gender = editGenderText.text.toString()
+        }
+    }
+
+    fun prepareForIntent(name: String, intent: Intent) {
+        realm.executeTransaction {
+            val character = realm.where(CharacterData::class.java).equalTo("name", name).findFirst()
+                ?: return@executeTransaction
+
+            intent.putExtra("intId", character.intId)
         }
     }
 }

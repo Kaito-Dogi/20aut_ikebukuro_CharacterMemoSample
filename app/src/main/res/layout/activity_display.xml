@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DisplayActivity">
+
+    <TextView
+        android:id="@+id/nameDisplayText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Character 0"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/genderDisplayText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="？？？"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/nicknameDisplayText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="？？？"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:layout_weight="1"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/zero" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="#6200EE"
+        android:padding="16dp"
+        android:text="一覧に戻る"
+        android:textColor="#FFFFFF" />
+</LinearLayout>
